@@ -1,0 +1,312 @@
+static keyword
+
+class design
+instance variables/ non-static variables
+
+class variables/ static variables
+
+example swiftfood - orders delivery charges will be same for all the customer
+so we want to maintain only one copy of variable for delivery charges
+
+use static properties
+shared by all objects/ common to all objects
+example student class - 3 subjects are common to all the students
+manipulation is easy, simple, enhances memory managementby avoiding duplication
+
+
+class properties - use static keyword
+static variable, static block, static method
+
+static variable is used to define class property 
+
+static block is used to initialize static data memebers
+
+static method is used to access and process static data members
+
+non-static methods can access static data members 
+but static methods cannot access iinstance data members
+
+another use is for autogeneration of values
+
+
+// static demo for static data members and initialization with declaration
+
+class Student
+{
+	private int roll;
+	private String name;
+	private static String subject1="Mathematics";
+	private static String subject2="Science";
+	private static String subject3="English";
+
+	public Student(int roll,String name)
+	{
+		this.roll=roll;
+		this.name=name;
+	}
+
+	public int getRoll(){return roll;}
+	public void setRoll(int roll){this.roll=roll;}
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
+	
+	public void display()
+	{
+		System.out.println("Roll Number : "+roll);
+		System.out.println("Name : "+name);
+		System.out.println("Subject 1 : "+subject1);
+		System.out.println("Subject 2 : "+subject2);
+		System.out.println("Subject 3 : "+subject3);
+		System.out.println("\n\n");
+	}
+}
+
+class Tester
+{
+	public static void main(String s[])
+	{
+		Student s1=new Student(101,"Anil");
+		Student s2=new Student(102,"Pooja");
+		s1.display();
+		s2.display();
+	}
+}
+
+	
+
+//static demo for initialization using static block
+
+class Student
+{
+	private int roll;
+	private String name;
+	private static String subject1;
+	private static String subject2;
+	private static String subject3;
+	
+	static
+	{
+	subject1="Mathematics";
+	subject2="Science";
+	subject3="English";
+	}
+
+	public Student(int roll,String name)
+	{
+		this.roll=roll;
+		this.name=name;
+	}
+
+	public int getRoll(){return roll;}
+	public void setRoll(int roll){this.roll=roll;}
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
+	
+	public void display()
+	{
+		System.out.println("Roll Number : "+roll);
+		System.out.println("Name : "+name);
+		System.out.println("Subject 1 : "+subject1);
+		System.out.println("Subject 2 : "+subject2);
+		System.out.println("Subject 3 : "+subject3);
+		System.out.println("\n\n");
+	}
+}
+
+class Tester
+{
+	public static void main(String s[])
+	{
+		Student s1=new Student(101,"Anil");
+		Student s2=new Student(102,"Pooja");
+		s1.display();
+		s2.display();
+	}
+}
+
+	
+
+//static demo for static methods
+
+class Student
+{
+	private int roll;
+	private String name;
+	private static String subject1;
+	private static String subject2;
+	private static String subject3;
+	
+	static
+	{
+	subject1="Mathematics";
+	subject2="Science";
+	subject3="English";
+	}
+
+	public Student(int roll,String name)
+	{
+		this.roll=roll;
+		this.name=name;
+	}
+
+	public int getRoll(){return roll;}
+	public void setRoll(int roll){this.roll=roll;}
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
+
+	public static String getSubject1(){return subject1;}
+	public static void setSubject1(String subject1){Student.subject1=subject1;}
+
+	public void display()
+	{
+		System.out.println("Roll Number : "+roll);
+		System.out.println("Name : "+name);
+		System.out.println("Subject 1 : "+subject1);
+		System.out.println("Subject 2 : "+subject2);
+		System.out.println("Subject 3 : "+subject3);
+		System.out.println("\n\n");
+	}
+}
+
+class Tester
+{
+	public static void main(String s[])
+	{
+		Student s1=new Student(101,"Anil");
+		Student s2=new Student(102,"Pooja");
+		s1.display();
+		s2.display();
+		Student.setSubject1("JAVA");
+		System.out.println("changed subject "+Student.getSubject1());
+		System.out.println("\n\n");
+		s1.display();
+		s2.display();
+
+	}
+}
+
+	
+
+//static demo for static members as array
+
+class Student
+{
+	private int roll;
+	private String name;
+	private static String[] subject;
+	 
+	
+	static
+	{
+	subject=new String[]{"Mathematics","Science","English"};
+	}
+
+	public Student(int roll,String name)
+	{
+		this.roll=roll;
+		this.name=name;
+	}
+
+	public int getRoll(){return roll;}
+	public void setRoll(int roll){this.roll=roll;}
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
+
+	public static String getSubject(int index){return subject[index];}
+	public static void setSubject(int index,String subject){Student.subject[index]=subject;}
+
+	public void display()
+	{
+		System.out.println("Roll Number : "+roll);
+		System.out.println("Name : "+name);
+		for(int i=0;i<3;i++)
+		{
+			System.out.println("Subject  "+(i+1)+" : "+subject[i]);
+		}
+		
+		System.out.println("\n\n");
+	}
+}
+
+class Tester
+{
+	public static void main(String s[])
+	{
+		int index=1;
+		Student s1=new Student(101,"Anil");
+		Student s2=new Student(102,"Pooja");
+		s1.display();
+		s2.display();
+		Student.setSubject(index,"Social Science");
+		System.out.println("changed subject "+Student.getSubject(index));
+		System.out.println("\n\n");
+		s1.display();
+		s2.display();
+
+	}
+}
+
+	
+
+// static demo for autogeneration of values
+
+class Student
+{
+	private int roll;
+	private String name;
+	private static String[] subject;
+	private static int counter=111; 
+	
+	static
+	{
+		subject=new String[]{"Mathematics","Science","English"};
+	}
+
+	public Student(String name)
+	{
+		this.roll=Student.counter++;
+		this.name=name;
+		 
+	}
+
+	public int getRoll(){return roll;}
+	 
+	public String getName(){return name;}
+	public void setName(String name){this.name=name;}
+
+	public static String getSubject(int index){return subject[index];}
+	public static void setSubject(int index,String subject){Student.subject[index]=subject;}
+
+	public void display()
+	{
+		System.out.println("Roll Number : "+roll);
+		System.out.println("Name : "+name);
+		for(int i=0;i<3;i++)
+		{
+			System.out.println("Subject  "+(i+1)+" : "+subject[i]);
+		}
+		
+		System.out.println("\n\n");
+	}
+}
+
+class Tester
+{
+	public static void main(String s[])
+	{
+		int index=1;
+		Student s1=new Student("Anil");
+		Student s2=new Student("Pooja");
+		Student s3=new Student("Rani");
+		Student s4=new Student("Pavan");
+		s1.display();
+		s2.display();
+		s3.display();
+		s4.display();
+
+		 
+
+	}
+}
+
+	
